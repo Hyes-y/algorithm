@@ -5,7 +5,7 @@
 ### Python 알고리즘 연습
 ***
 #### 1. [프로그래머스 코딩테스트 kit](https://github.com/Hyes-y/algorithm/tree/master/programmers)
-#### 2. 백준 알고리즘(예정)
+#### 2. [백준 알고리즘](https://github.com/Hyes-y/algorithm/tree/main/backjoon)
 #### 3. 이것이 취업을 위한 코딩 테스트다 with python(예정)
 ***
 
