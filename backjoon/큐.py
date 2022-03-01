@@ -15,30 +15,59 @@ collections의 deque 사용
 
 """
 
-import sys
-from collections import deque
+# import sys
+# from collections import deque
 
-n = int(sys.stdin.readline())
+# n = int(sys.stdin.readline())
 
-answer = deque()
+# answer = deque()
 
-for _ in range(n):
-    param = sys.stdin.readline().rstrip()
+# for _ in range(n):
+#     param = sys.stdin.readline().rstrip()
 
-    if len(param) >= 6:
-        func, num = param.split(' ')
-        getattr(answer, 'append')(int(num))
-        continue
+#     if len(param) >= 6:
+#         func, num = param.split(' ')
+#         getattr(answer, 'append')(int(num))
+#         continue
 
-    if param == 'pop':
-        value = answer.popleft() if len(answer) else -1
-    elif param == 'size':
-        value = len(answer)
-    elif param == 'empty':
-        value = 0 if len(answer) else 1
-    elif param == 'front':
-        value = -1 if not len(answer) else answer[0]
-    elif param == 'back':
-        value = -1 if not len(answer) else answer[-1]
+#     if param == 'pop':
+#         value = answer.popleft() if len(answer) else -1
+#     elif param == 'size':
+#         value = len(answer)
+#     elif param == 'empty':
+#         value = 0 if len(answer) else 1
+#     elif param == 'front':
+#         value = -1 if not len(answer) else answer[0]
+#     elif param == 'back':
+#         value = -1 if not len(answer) else answer[-1]
 
-    print(value)
+#     print(value)
+
+
+
+# 1158 요세푸스
+# 메모리 : 32352KB   /   시간 : 7424ms   / 코드 길이 : 429B
+
+# import sys
+# from collections import deque
+
+# n, k = map(int, sys.stdin.readline().rstrip().split(' '))
+
+# answer = ""
+
+# people = [i for i in range(1, n+1)]
+# people_q = deque(people)
+
+# idx = 1
+# while len(people_q) > 0:
+#     person = people_q.popleft()
+#     if idx == k:
+#         answer += str(person) + ", "
+#         idx = 1
+#         continue
+#     else:
+#         people_q.append(person)
+#         idx += 1
+
+# answer = answer[:-2]
+# print(f"<{answer}>")
