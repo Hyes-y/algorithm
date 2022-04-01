@@ -71,3 +71,34 @@ collections의 deque 사용
 
 # answer = answer[:-2]
 # print(f"<{answer}>")
+
+
+
+# 11866 요세푸스 0
+# 메모리 : 32368KB   /   시간 : 208ms   / 코드 길이 : 393B
+	
+from collections import deque as dq
+
+n, k = map(int, input().split())
+
+n_list = dq(list(range(1, n+1)))
+answer = []
+cnt = 1
+while len(n_list) != 0:
+    if cnt > k:
+        cnt -= k
+
+    t = n_list.popleft()
+
+    if cnt == k:
+        answer.append(t)
+    else:
+        n_list.append(t)
+    
+    cnt += 1
+
+answer = map(str, answer)
+
+print("<", end='')
+print(', '.join(answer), end='')
+print(">")
