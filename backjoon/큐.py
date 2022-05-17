@@ -76,7 +76,7 @@ collections의 deque 사용
 
 # 11866 요세푸스 0
 # 메모리 : 32368KB   /   시간 : 208ms   / 코드 길이 : 393B
-	
+'''
 from collections import deque as dq
 
 n, k = map(int, input().split())
@@ -102,3 +102,39 @@ answer = map(str, answer)
 print("<", end='')
 print(', '.join(answer), end='')
 print(">")
+'''
+
+
+# 2164 카드2
+
+'''
+
+카드는 1(top) ~ n(bottom) 로 놓여져 있다
+순서대로 맨 윗장은 제거하고 그 다음장은 맨 아래로 보낸다.
+
+1> deque.rotate 이용
+-> deque.rotate(양수) => 시계 방향으로 회전 [1, 2, 3] => [3, 1, 2]
+
+
+
+'''
+
+from collections import deque as dq
+import sys
+
+# n = int(sys.stdin.readline())
+
+def cardPlay(n):
+    card_deck = dq([i for i in range(1, n+1)])
+
+    while len(card_deck) != 1:
+        card_deck.popleft()
+        card_deck.rotate(-1)
+
+    return card_deck[0]
+
+
+
+# for i in range(1, 33):
+#     print("n: ", i, " card:", cardPlay(i))
+

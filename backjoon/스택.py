@@ -113,3 +113,44 @@
 
 # # 17298 오큰수
 # # 메모리 : 30864KB   /   시간 : 112ms   / 코드 길이 : 756B
+
+
+
+# 1874 스택 수열
+# 메모리 : 37836KB   /   시간 : 316ms   / 코드 길이 : 638B
+from sys import stdin
+from collections import deque as dq
+
+n = int(stdin.readline())
+
+k_dq = dq([])
+answer_dq = dq([])
+stack = []
+num_dq = dq([i for i in range(1, n+1)])
+
+for _ in range(n):
+    k = int(stdin.readline())
+    k_dq.append(k)
+
+while len(stack) != 0 or len(num_dq) != 0:
+    print("k_dq: ", k_dq)
+    print("stack: ", stack)
+    print("num_dq: ", num_dq)
+    print("answer_dq: ", answer_dq)
+    k = k_dq[0]
+    
+    if len(stack) == 0 or stack[-1] < k:
+        popped = num_dq.popleft()
+        stack.append(popped)
+        answer_dq.append("+")
+    
+    elif stack[-1] > k:
+        answer_dq = dq(["NO"])
+        break
+    else:
+        stack.pop()
+        k_dq.popleft()
+        answer_dq.append("-")
+
+for answer in answer_dq:
+    print(answer)
