@@ -162,34 +162,42 @@ for _ in range(t):
             idx += 1
         
         else:
-            q, nq = qm, qM
+            q = qm
             if d[1] == "1":
-                q, nq = qM, qm
+                q = qM
 
             if len(q) == 0:
                 continue
             
-            
             while q:
-                popped = hq.heappop(q)[1]               
+                _, popped = hq.heappop(q)
                 if check[popped]:
                     check[popped] = False
-                    while nq:
-                        _, npopped = hq.heappop(nq)
-                        if popped == npopped:
-                            break
-                        hq.heappush(nq, (_, npopped))
                     break
-                
 
-    if len(qm) == 0 and len(qM) == 0:
+    min_val = False
+    max_val = False
+
+    while qM:
+        v, popped = hq.heappop(qM)
+        if check[popped]:
+            max_val = -v
+            check[popped] = False
+            break
+
+    while qm:
+        v, popped = hq.heappop(qm)
+        if check[popped]:
+            min_val = v
+            break
+        
+
+    if not min_val and not max_val:
         print("EMPTY")
-    elif len(qm) == 1 and len(qM) == 1:
-        val = hq.heappop(qm)[0]
+    elif not min_val or not max_val:
+        val = min_val if min_val else max_val
         print(f"{val} {val}")
     else:
-        max_val = -(hq.heappop(qM)[0])
-        min_val = hq.heappop(qm)[0]
         print(f"{max_val} {min_val}")
 """
 테스트 케이스
