@@ -9,10 +9,10 @@ for _ in range(n):
 visited = [0] * (n+1)
 finished = [False] * (n+1)
 order = 0
-
+cycle = 0
 def dfs(node):
 	global order
-	
+	global cycle
 	order += 1
 	visited[node] = order
 	
@@ -26,6 +26,7 @@ def dfs(node):
 				continue
 			dfs(idx)
 		elif not finished[idx]:
+			cycle = (node, idx)
 			break
 		else:
 			visited[order] = 0
@@ -36,8 +37,9 @@ for i in range(1, n+1):
 		dfs(i)
 		break
 
+print(cycle)
+print(visited)
 print(finished)
-
 """
 test case
 5
