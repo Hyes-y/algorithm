@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(1000000)
 n = int(input())
 graph = [[0] * (n+1) for _ in range(n+1)]
 
@@ -6,40 +8,45 @@ for _ in range(n):
 	graph[a][b] = 1
 	graph[b][a] = 1
 
-visited = [0] * (n+1)
-finished = [False] * (n+1)
-order = 0
-cycle = 0
-def dfs(node):
-	global order
-	global cycle
-	order += 1
-	visited[node] = order
+visited = [False] * (n+1)
+cycle = []
+finded = -1
+
+def dfs(node, prev):
+	global finded
+	if visited[node]:
+		finded = node
+		if node not in cycle:
+			cycle.append(node)
+		return
+
+	visited[node] = True
 	
 	for idx, val in enumerate(graph[node]):
-		if val == 0:
+		if val == 0 or idx == prev:
 			continue
-			
-		if visited[idx] == 0:
-			graph[idx][node] = 0
-			if graph[idx] == [0] * (n+1):
-				continue
-			dfs(idx)
-		elif not finished[idx]:
-			cycle = (node, idx)
-			break
-		else:
-			visited[order] = 0
-	finished[node] = True
+		dfs(idx, node)
+		if finded == -2:
+			return
 
-for i in range(1, n+1):
-	if graph[i] != [0] * (n+1):
-		dfs(i)
-		break
+		if finded == node:
+			finded = -2
+			return
+		if finded >= 0:
+			if node not in cycle:
+				cycle.append(node)
+			return
+				
+
+# for i in range(1, n+1):
+# 	if graph[i] != [0] * (n+1):
+# 		dfs(i, 0)
+# 		break
+dfs(1, 1)
 
 print(cycle)
-print(visited)
-print(finished)
+print(*cycle)
+
 """
 test case
 5
